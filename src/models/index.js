@@ -15,7 +15,7 @@ const sequelize = new Sequelize(
 //checking if connection is done
 try {
   sequelize.authenticate();
-  sequelize.sync();
+  sequelize.sync({ force: true });
   console.log("Connection has been established successfully.");
 } catch (error) {
   console.error("Unable to connect to the database:", error);
@@ -26,3 +26,5 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.task = require("./task.model")(sequelize, Sequelize);
+
+module.exports = sequelize;
