@@ -1,0 +1,5 @@
+2023-01-26 13:12:31:1231[32minfo[39m: [32mServer running on http://localhost:7070[39m
+2023-01-26 13:12:53:1253[35mhttp[39m: [35m::1 POST /task/add-task 200 242 - 403.194 ms[39m
+[35m[39m
+2023-01-26 13:13:11:1311[35mhttp[39m: [35m::1 GET /task/get-task 200 244 - 112.591 ms[39m
+[35m[39m

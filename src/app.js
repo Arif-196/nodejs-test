@@ -1,4 +1,6 @@
 const express = require("express");
+const morganMiddleware = require("./middleware/morgan.middleware");
+const logger = require("./helper/logger");
 const taskRoutes = require("./routes/index");
 const PORT = process.env.PORT || 7070;
 const app = express();
@@ -19,17 +21,17 @@ app.use((req, res, next) => {
   );
   next();
 });
+app.use(morganMiddleware);
+app.get("/", (req, res) => {
+  logger.info("Checking the API status: Everything is OK");
+  res.status(200).send({
+    status: "UP",
+    message: "The API is up and running!",
+  });
+});
 
 app.use("/task", taskRoutes);
 
-app.use((error, req, res, next) => {
-  console.log(error);
-  const status = error.statusCode || 500;
-  const message = error.message;
-  const data = error.data;
-  res.status(status).json({ message: message, data: data });
-});
-
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+  logger.info(`Server running on http://localhost:${PORT}`);
 });

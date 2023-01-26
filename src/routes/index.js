@@ -7,6 +7,7 @@ const {
   updateTask,
   deleteTask,
 } = require("../controllers/task.controller");
+const logger = require("../helper/logger");
 
 const router = express.Router();
 
